@@ -4,13 +4,8 @@
 
 
 //testing game logic
- const game = new Game();
+ let game;
  const phrase = new Phrase();
-
-
-
-game.startGame();
-console.log(`Active Phrase - phrase: ${game.activePhrase}`);
 
 
 
@@ -18,8 +13,12 @@ console.log(`Active Phrase - phrase: ${game.activePhrase}`);
   * Game class. Hold event listeners to interact with the DOM
   */
 
-        //addEventListener for the start button
-    document.getElementById('btn__reset').addEventListener( 'click', () => {console.log(`it's ok`)} );
+//addEventListener for the start button
+document.getElementById('btn__reset').addEventListener('click', () => {
+    console.log('it works');
+    game = new Game();
+    game.startGame();
+    } );
     
     
     
