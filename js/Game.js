@@ -36,8 +36,8 @@
     * @return {Object} Phrase object chosen to be used
     */
     getRandomPhrase() {
-        let i = Math.floor(Math.random()* game.createPhrase().length);
-        return game.createPhrase()[i];
+        let i = Math.floor(Math.random()* this.phrases.length);
+        return this.phrases[i];
 
     }
 
@@ -46,7 +46,7 @@
     */
     startGame() {
         document.getElementById('overlay').style.display = 'none';
-        this.getRandomPhrase();
+        this.activePhrase = this.getRandomPhrase();
         phrase.addPhraseToDisplay();
         console.log(this.activePhrase);
         };
@@ -58,4 +58,3 @@
 
     //end game
  }
- 
