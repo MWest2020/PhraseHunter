@@ -47,8 +47,8 @@
     startGame() {
         document.getElementById('overlay').style.display = 'none';
         this.activePhrase = this.getRandomPhrase();
+        
         phrase.addPhraseToDisplay();
-        console.log(this.activePhrase);
         };
     
 

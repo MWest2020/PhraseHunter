@@ -35,12 +35,12 @@
         ul += '</ul>';
         document.getElementById("phrase").innerHTML = ul;
         
-        game.activePhrase = displayPhrase.toLowerCase();
+        // game.activePhrase = displayPhrase.toLowerCase();
     }
 
     // This function checks if a letter is contained in the this.phrase of the phrase object.
     checkLetter(letter) {
-        if (this.phrase.includes(letter.toLowerCase())) {
+        if (game.activePhrase.phrase.includes(letter)) {
             return true;
         } else {
             return false;
