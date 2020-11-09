@@ -4,9 +4,10 @@
 
 
 //testing game logic
- 
-//  const phrase = new Phrase();
-//  game.activePhrase.checkLetter('a');
+let game;
+let letter;
+const phrase = new Phrase();
+
  
 
 /**
@@ -18,6 +19,7 @@ document.getElementById('btn__reset').addEventListener('click', () => {
     
   game = new Game();
   game.startGame();
+  game.handleInteraction();
   });
   
   

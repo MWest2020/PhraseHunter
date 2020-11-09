@@ -19,9 +19,9 @@
     */
     addPhraseToDisplay(){
         const displayPhrase = game.getRandomPhrase().phrase;
-        
+
         const splitPhrase = displayPhrase.split('');
-        
+
         let ul = '<ul>'
 
         splitPhrase.forEach(split => {
@@ -34,22 +34,36 @@
 
         ul += '</ul>';
         document.getElementById("phrase").innerHTML = ul;
-        
+
         // game.activePhrase = displayPhrase.toLowerCase();
     }
 
+
     // This function checks if a letter is contained in the this.phrase of the phrase object.
     checkLetter(letter) {
+        
         if (game.activePhrase.phrase.includes(letter)) {
             return true;
         } else {
             return false;
         }
+        
     }
 
+    /** 
+    * Displays passed letter on screen after a match is found 
+    * * @param (string) letter - Letter to display
+    * Function iterates over the li items 
+    */ 
+   showMatchedLetter(letter) {
+        for (let i = 0; i < document.querySelector("#phrase > ul").children.length; i++) {
+            let showLetter = document.querySelector(`#phrase > ul > li.hide.letter.${letter}`);
 
-
-
+            if (showLetter !== null) {
+                showLetter.className = `show letter ${letter}`;
+            }
+        }        
+    }
 
 
 
