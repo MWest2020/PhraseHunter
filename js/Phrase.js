@@ -47,16 +47,7 @@
         }
     }
 
-// This function reveals the letter supplied as an argument by changing it's class to the 'show' class
-showMatchedLetter(letter) {
-    for (let i = 0; i < document.querySelector("#phrase > ul").children.length; i++) {
-        let letterVisual = document.querySelector(`#phrase > ul > li.hide.letter.${letter}`);
 
-        if (letterVisual !== null) {
-            letterVisual.className = `show letter ${letter}`;
-        }
-    }        
-}
 
 
 
@@ -64,11 +55,3 @@ showMatchedLetter(letter) {
 
 
 }
-
-
-
-
-
-
-
-

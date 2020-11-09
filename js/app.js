@@ -16,12 +16,11 @@
 //addEventListener for the start button
 document.getElementById('btn__reset').addEventListener('click', () => {
     
-    game = new Game();
-    game.startGame();
-    });
-    
-    
-    
-    
-    //addEvenlistener for the onscreen keyboard buttons
-
+  game = new Game();
+  game.startGame();
+  });
+  
+  
+  
+  
+  //addEvenlistener for the onscreen keyboard buttons
