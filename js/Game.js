@@ -121,7 +121,6 @@
     * Removes a life from the scoreboard 
     * Checks if player has remaining lives and ends game if player is out */ 
     removeLife() {
-        console.log(this.missed);
         const tries = document.querySelectorAll('li.tries');
         let i = this.missed;
             if (this.missed === 4)  {
@@ -135,12 +134,4 @@
         
 
     };
-
-    // `removeLife()`: This method removes a life from the scoreboard, by replacing one of the `liveHeart.png` images with a `lostHeart.png` image (found in the `images` folder) and increments the `missed` property. If the player has five missed guesses (i.e they're out of lives), then end the game by calling the `gameOver()` method. 
-
-    
-
-    // `gameOver()`: This method displays the original start screen overlay, and depending on the outcome of the game, updates the overlay `h1` element with a friendly win or loss message, and replaces the overlay’s `start` CSS class with either the `win` or `lose` CSS class. 
-
-
- }
+}

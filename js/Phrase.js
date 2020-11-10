@@ -41,9 +41,7 @@
 
     // This function checks if a letter is contained in the this.phrase of the phrase object.
     checkLetter(letter) {
-        console.log(letter);
-        console.log(this.phrase);
-        
+            
         if (game.activePhrase.phrase.includes(letter)) {
             return true;
         } else {
@@ -70,3 +68,4 @@
 
 
 }
+
