@@ -41,19 +41,20 @@
 
     // This function checks if a letter is contained in the this.phrase of the phrase object.
     checkLetter(letter) {
+        console.log(letter);
+        console.log(this.phrase);
         
         if (game.activePhrase.phrase.includes(letter)) {
             return true;
         } else {
             return false;
         }
-        
     }
 
     /** 
     * Displays passed letter on screen after a match is found 
     * * @param (string) letter - Letter to display
-    * Function iterates over the li items 
+    *  
     */ 
    showMatchedLetter(letter) {
         for (let i = 0; i < document.querySelector("#phrase > ul").children.length; i++) {

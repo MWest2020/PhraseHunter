@@ -18,22 +18,22 @@
     handleInteraction(){
         const qwerty = document.getElementById('qwerty');
         let input;
+        let count = 0;
         qwerty.addEventListener('click', (event) => {
             input = event.target.textContent;
-            console.log(input);
+            
             if(phrase.checkLetter(input)){
                 phrase.showMatchedLetter(input);
+            } else if(!phrase.checkLetter(input)){
+                count += 1;
+                this.removeLife();
+                
+                return this.missed = count;
             }
             
-
+            this.checkForWin();
+            this.gameOver();
         })
-        
-        
-        
-        
-        this.checkForWin();
-        
-
     }
 
 
@@ -85,10 +85,34 @@
     checkForWin() {
          
         if (!document.querySelector(`#phrase > ul`).innerHTML.includes('hide')) {
-            console.log('game is won');
-        } else { return false }
+            return true;
+        } else {  
+            return false; 
+        }
          
-    };
+    }
+
+/** 
+    * Displays game over message 
+    * @param {boolean} gameWon - Whether or not the user won the game */ 
+    
+    gameOver(){
+        
+        const gameOverMessage = document.querySelector('#game-over-message');
+        if (this.checkForWin()){
+            document.getElementById('overlay').className = 'win';
+            document.getElementById('overlay').style.display = 'block';
+            gameOverMessage.textContent = 'PHRASE HUNTED AND SLAIN! YOU WON';
+        }
+        
+        else {
+            document.getElementById('overlay').className = 'lose';
+            document.getElementById('overlay').style.display = 'block';
+            gameOverMessage.textContent = 'PHRASE HUNTED and lost YOUR LIVES!';
+        }
+         
+    }
+    
 
     
     //remove heart from life scoreboard
@@ -97,25 +121,26 @@
     * Removes a life from the scoreboard 
     * Checks if player has remaining lives and ends game if player is out */ 
     removeLife() {
-        
+        console.log(this.missed);
         const tries = document.querySelectorAll('li.tries');
-        
-        for(let i = this.missed; i < 5; i++) {
-            if(this.missed = i){tries[i].firstChild.src = "../Phrasehunter/images/lostHeart.png"}
-            else if(this.missed === 5){
+        let i = this.missed;
+            if (this.missed === 4)  {
+            tries[i].firstChild.src = "../Phrasehunter/images/lostHeart.png";
+            this.gameOver();
+            } else if(this.missed = i -1 && this.missed < 4 )  {
                 tries[i].firstChild.src = "../Phrasehunter/images/lostHeart.png";
-            gameOver();
-        }
-
-        }
+            } else if (this.missed = i && this.missed < 4)  {
+                tries[i].firstChild.src = "../Phrasehunter/images/lostHeart.png";
+            }
+        
 
     };
 
     // `removeLife()`: This method removes a life from the scoreboard, by replacing one of the `liveHeart.png` images with a `lostHeart.png` image (found in the `images` folder) and increments the `missed` property. If the player has five missed guesses (i.e they're out of lives), then end the game by calling the `gameOver()` method. 
 
+    
+
+    // `gameOver()`: This method displays the original start screen overlay, and depending on the outcome of the game, updates the overlay `h1` element with a friendly win or loss message, and replaces the overlay’s `start` CSS class with either the `win` or `lose` CSS class. 
 
 
-
-
-    //end game
  }
