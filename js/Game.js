@@ -1,100 +1,86 @@
 /* Treehouse FSJS Techdegree
  * Project 4 - OOP Game App
  * Game.js */
+ 
 
- /**
-  * Game class
-    */
-   class Game{
+    class Game{
     constructor(){
         this.missed = 0;
         this.phrases = this.createPhrase();
         this.activePhrase = null;
     }
 
-
+    /**
+    * Begins game by selecting a random phrase and displaying it to user
+    */
+   startGame() {
+    document.getElementById('overlay').style.display = 'none';
     
-    //handle interactions
-    handleInteraction(){
-        const qwerty = document.getElementById('qwerty');
-        let input;
-        let count = 0;
-        qwerty.addEventListener('click', (event) => {
-            input = event.target.textContent;
-            
-            if(phrase.checkLetter(input)){
-                phrase.showMatchedLetter(input);
-            } else if(!phrase.checkLetter(input)){
-                count += 1;
-                this.removeLife();
-                
-                return this.missed = count;
-            }
-            
-            this.checkForWin();
-            this.gameOver();
-        })
-    }
-
-
-
-
+    this.activePhrase = this.getRandomPhrase();
+    this.activePhrase.addPhraseToDisplay();
+    };
 
     /**
     * Creates phrases for use in game
     * @return {array} An array of phrases that could be used in the game
     */
-    createPhrase(){
-        const phraseArr = [
-            {phrase: 'Life is like a box of chocolates'},
-            {phrase: 'There is no such thing as a free lunch'},
-            {phrase: 'Cutting corners'},
-            {phrase: 'Give someone the benefit of the doubt'},
-            {phrase: 'Let someone off the hook'}
-        ];
-        return phraseArr;
+   createPhrase(){
+    const phraseArr = [
+        new Phrase('your guess is as good as any'),
+        new Phrase('follow the white rabbit'),
+        new Phrase('spam and eggs'),
+        new Phrase(`hello world`),
+        new Phrase('thank you for this opportunity')
+    ];
+    return phraseArr;
     }
 
     /**
     * Selects random phrase from phrases property
     * @return {Object} Phrase object chosen to be used
     */
-    getRandomPhrase() {
-        // let i = Math.floor(Math.random()* this.phrases.length);
-        // return this.phrases[i];
-        return this.phrases[2];
+   getRandomPhrase() {
+       let randomPhrase = this.phrases[Math.floor(Math.random() * this.phrases.length)];
+        return randomPhrase;
     }
-
-    /**
-    * Begins game by selecting a random phrase and displaying it to user
-    */
-    startGame() {
-        document.getElementById('overlay').style.display = 'none';
-        this.activePhrase = this.getRandomPhrase();
-        
-        phrase.addPhraseToDisplay();
-        };
     
 
-    //check for win
 
+    /** 
+    * the handleInteraction function is invoked from the app.js event listeners.
+    */
+
+    handleInteraction(input){
+        input.disabled = true
+        
+        if(this.activePhrase.checkLetter(input.textContent)){
+            input.className = 'chosen';
+            this.activePhrase.showMatchedLetter(input.textContent);
+
+            if(this.checkForWin()){ this.gameOver()};
+            
+        } else { input.className = 'wrong';
+            this.removeLife();
+        }
+    }
+    
     /** 
     * Checks for winning move 
     * @return {boolean} True if game has been won, false if game wasn't won 
     */ 
-    checkForWin() {
+    checkForWin(){
          
-        if (!document.querySelector(`#phrase > ul`).innerHTML.includes('hide')) {
-            return true;
-        } else {  
+        if (document.querySelector(`#phrase > ul`).innerHTML.includes('hide')) {
             return false; 
+        }  else {  
+            return true; 
         }
          
     }
 
-/** 
+    /** 
     * Displays game over message 
-    * @param {boolean} gameWon - Whether or not the user won the game */ 
+    */ 
     
     gameOver(){
         
@@ -110,28 +96,42 @@
             document.getElementById('overlay').style.display = 'block';
             gameOverMessage.textContent = 'PHRASE HUNTED and lost YOUR LIVES!';
         }
-         
+        this.init();
     }
+
     
+    /** 
+    * Resets the board after a game is played
+    */
+    
+    init(){
+        const keyboard = document.querySelectorAll("#qwerty div button");
+        for (let i = 0; i < keyboard.length; i++) {
+            keyboard[i].className = 'key';
+            keyboard[i].disabled = false;
+        }
+
+        const hearts = document.querySelector("#scoreboard > ol");
+        for (let i = 0; i < hearts.children.length; i++) {
+            hearts.children[i].firstElementChild.src = "images/liveHeart.png";            
+        }
+    }
 
     
     //remove heart from life scoreboard
     /** 
-    * Increases the value of the missed property 
+    * Increases the value of the this.missed property 
     * Removes a life from the scoreboard 
     * Checks if player has remaining lives and ends game if player is out */ 
-    removeLife() {
-        const tries = document.querySelectorAll('li.tries');
-        let i = this.missed;
-            if (this.missed === 4)  {
-            tries[i].firstChild.src = "../Phrasehunter/images/lostHeart.png";
-            this.gameOver();
-            } else if(this.missed = i -1 && this.missed < 4 )  {
-                tries[i].firstChild.src = "../Phrasehunter/images/lostHeart.png";
-            } else if (this.missed = i && this.missed < 4)  {
-                tries[i].firstChild.src = "../Phrasehunter/images/lostHeart.png";
-            }
-        
+   removeLife() {
+    const hearts = document.querySelector("#scoreboard > ol");
+    // let heartIndex = this.missed;
 
-    };
+    hearts.children[this.missed].firstElementChild.src = "images/lostHeart.png";
+    this.missed++;
+
+    if (this.missed > 4) {
+        this.gameOver();
+    }
+}
 }

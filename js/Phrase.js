@@ -1,16 +1,15 @@
-/* Treehouse FSJS Techdegree
- * Project 4 - OOP Game App
- * Phrase.js */
+    /* Treehouse FSJS Techdegree
+    * Project 4 - OOP Game App
+    * Phrase.js */
 
- /**
-  * 
-  */
+    /**
+     * 
+     */
 
- class Phrase{
+    class Phrase{
     //handle creation of phrases (the toLowerCase() fuction is done, because verification will be done via toLowerCase)
     constructor(phrase){
-          this.phrase = phrase;
-
+          this.phrase = phrase.toLowerCase();
     }
 
 
@@ -18,9 +17,8 @@
     * Display phrase on game board
     */
     addPhraseToDisplay(){
-        const displayPhrase = game.getRandomPhrase().phrase;
-
-        const splitPhrase = displayPhrase.split('');
+        const displayPhrase = this.phrase;
+        const splitPhrase = this.phrase.split('');
 
         let ul = '<ul>'
 
@@ -35,14 +33,13 @@
         ul += '</ul>';
         document.getElementById("phrase").innerHTML = ul;
 
-        // game.activePhrase = displayPhrase.toLowerCase();
     }
 
 
     // This function checks if a letter is contained in the this.phrase of the phrase object.
     checkLetter(letter) {
             
-        if (game.activePhrase.phrase.includes(letter)) {
+        if (this.phrase.includes(letter)) {
             return true;
         } else {
             return false;
@@ -63,9 +60,4 @@
             }
         }        
     }
-
-
-
-
 }
-

@@ -28,6 +28,7 @@ body {
   flex-direction: column;
   display: flex;
   height: 100vh;
+  background-color: lightcoral;
 }
 
 li, ol, ul {
@@ -72,6 +73,10 @@ button {
   height: 100%;
   max-height: 900px;
   text-align: center;
+  background-image: url(../images/abc.png);
+  background-repeat: no-repeat;
+  background-position: right;
+  
 }
 
 .section {
@@ -104,7 +109,7 @@ button {
 }
 
 .space {
-  width: 15px;
+  width: 25px;
 }
 
 
@@ -177,18 +182,27 @@ button {
 
 .title {
   color: #FFF;
+  
 }
+
 
 .start {
   background-color: #3a3f58;
+  background-image: url(../images/hunter.png);
+  background-repeat: no-repeat;
+  background-size: 25%;
+  background-position: 5em;
 }
 
 .start a {
-  color: #fff;
+  color: rgb(90, 29, 29);
 }
 
 .win {
   background-color: var(--color-win);
+  background-image : url(../images/victory.png);
+  background-repeat: no-repeat;
+  background-position: 5em, 10em;
 }
 
 .win a {
@@ -197,8 +211,11 @@ button {
 
 .lose {
   background-color: #f5785f;
+  background-image: url(../images/skull.png);
+  
 }
 
 .lose a {
   color: var(--color-lose);
 }
+
